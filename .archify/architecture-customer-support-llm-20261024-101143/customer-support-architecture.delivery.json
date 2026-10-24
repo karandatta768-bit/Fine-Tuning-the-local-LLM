@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "1b4e8a69-72a2-45b5-87c3-5c88222c12b0",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\candidate.json",
+  "output": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.html",
+  "specification": {
+    "sha256": "4b70d2a7b1e8f111039f0c9a1eebeb4b374194a18e3c45068eff49e11a46fcef",
+    "bytes": 9055
+  },
+  "artifact": {
+    "sha256": "a34d46d265ca015a50f22b56863deccf3d90f44a5c75e83e37f19ef6570605c7",
+    "bytes": 846309
+  }
+}

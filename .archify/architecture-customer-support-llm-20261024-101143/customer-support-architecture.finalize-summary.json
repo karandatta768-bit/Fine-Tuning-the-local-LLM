@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\candidate.json",
+    "sha256": "06fb3355c40506f60a1a909abe06fd7e936dad9f4811d98438fee8f623f475ff",
+    "bytes": 9059
+  },
+  "artifact": {
+    "path": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.html",
+    "sha256": "40b712bcb660f0e628a09306d57245eacae65ac79485af1727f92310814a6fcc",
+    "bytes": 846345
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.finalize.json",
+    "summaryReceipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T04:43:23.958Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 6209,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 10,
+      "routesOverSuggestedBends": 4
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "model-to-inference",
+            "from": "model-hub",
+            "to": "inference",
+            "label": "model fallback",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            822,
+            117
+          ],
+          "sharedNode": "inference"
+        },
+        {
+          "left": {
+            "id": "preprocess-to-splits",
+            "from": "preprocess",
+            "to": "splits",
+            "label": "write splits",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "right": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "point": [
+            935.8000000000001,
+            438
+          ]
+        },
+        {
+          "left": {
+            "id": "preprocess-to-splits",
+            "from": "preprocess",
+            "to": "splits",
+            "label": "write splits",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "right": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "point": [
+            858,
+            438
+          ]
+        },
+        {
+          "left": {
+            "id": "preprocess-to-splits",
+            "from": "preprocess",
+            "to": "splits",
+            "label": "write splits",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "right": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            943.800000000001,
+            438
+          ]
+        },
+        {
+          "left": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "splits-to-inference",
+            "from": "splits",
+            "to": "inference",
+            "label": "allowed labels",
+            "collectionIndex": 15,
+            "artifactIndex": 16
+          },
+          "point": [
+            814,
+            195.5
+          ],
+          "sharedNode": "inference"
+        },
+        {
+          "left": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "splits-to-evaluator",
+            "from": "splits",
+            "to": "evaluator",
+            "label": "held-out test",
+            "collectionIndex": 16,
+            "artifactIndex": 17
+          },
+          "point": [
+            1049,
+            571
+          ]
+        },
+        {
+          "left": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "point": [
+            1020.9999999999999,
+            570.9999999999999
+          ],
+          "sharedNode": "inference"
+        },
+        {
+          "left": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            1035,
+            571
+          ],
+          "sharedNode": "inference"
+        }
+      ],
+      "detours": [
+        {
+          "relationship": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "bends": 4,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "splits-to-inference",
+            "from": "splits",
+            "to": "inference",
+            "label": "allowed labels",
+            "collectionIndex": 15,
+            "artifactIndex": 16
+          },
+          "bends": 3,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "bends": 4,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "bends": 8,
+          "stretch": 1.18
+        }
+      ],
+      "truncated": true
+    },
+    "hints": [
+      "model-hub → inference and inference → evaluator cross next to inference: move node model-hub or evaluator so the two reach inference from different sides (for example one level with it, one directly above or below it).",
+      "preprocess → splits crosses adapter → inference: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "preprocess → splits crosses evaluator → inference: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "preprocess → splits crosses inference → evaluator: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "adapter → inference and splits → inference cross next to inference: move node adapter or splits so the two reach inference from different sides (for example one level with it, one directly above or below it).",
+      "adapter → inference crosses splits → evaluator: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "adapter → inference and evaluator → inference cross next to inference: move node adapter or evaluator so the two reach inference from different sides (for example one level with it, one directly above or below it).",
+      "adapter → inference and inference → evaluator cross next to inference: move node adapter or evaluator so the two reach inference from different sides (for example one level with it, one directly above or below it)."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.cache/
+.env
+data/raw/
+data/customer_support_raw.csv
+data/processed/
+outputs/
+results/

@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\candidate.json",
+    "sha256": "4b70d2a7b1e8f111039f0c9a1eebeb4b374194a18e3c45068eff49e11a46fcef",
+    "bytes": 9055
+  },
+  "artifact": {
+    "path": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\customer-support-architecture.html",
+    "sha256": "a34d46d265ca015a50f22b56863deccf3d90f44a5c75e83e37f19ef6570605c7",
+    "bytes": 846309
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\review-4\\customer-support-architecture.finalize.json",
+    "summaryReceipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\review-4\\customer-support-architecture.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\karan\\OneDrive\\Desktop\\fine-tune\\.archify\\architecture-customer-support-llm-20261024-101143\\review-4\\customer-support-architecture.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T04:43:23.958Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 6382,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 5,
+      "routesOverSuggestedBends": 5
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "inference-to-rules",
+            "from": "inference",
+            "to": "response-rules",
+            "label": "validate JSON",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "right": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "point": [
+            590,
+            196
+          ],
+          "sharedNode": "inference"
+        },
+        {
+          "left": {
+            "id": "rules-to-inference",
+            "from": "response-rules",
+            "to": "inference",
+            "label": "validated result or fallback",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "right": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "point": [
+            414,
+            196
+          ],
+          "sharedNode": "inference"
+        },
+        {
+          "left": {
+            "id": "hub-to-download",
+            "from": "dataset-hub",
+            "to": "download",
+            "label": "fetch CSV",
+            "collectionIndex": 7,
+            "artifactIndex": 8
+          },
+          "right": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "point": [
+            193,
+            466
+          ]
+        },
+        {
+          "left": {
+            "id": "splits-to-trainer",
+            "from": "splits",
+            "to": "trainer",
+            "label": "train + validation",
+            "collectionIndex": 11,
+            "artifactIndex": 12
+          },
+          "right": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "point": [
+            823.2,
+            621
+          ]
+        },
+        {
+          "left": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "right": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            113,
+            736
+          ],
+          "sharedNode": "evaluator"
+        }
+      ],
+      "detours": [
+        {
+          "relationship": {
+            "id": "inference-to-ui",
+            "from": "inference",
+            "to": "streamlit",
+            "label": "JSON result",
+            "collectionIndex": 3,
+            "artifactIndex": 4
+          },
+          "bends": 4,
+          "stretch": 1.215
+        },
+        {
+          "relationship": {
+            "id": "preprocess-to-splits",
+            "from": "preprocess",
+            "to": "splits",
+            "label": "write splits",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "bends": 3,
+          "stretch": 1.241
+        },
+        {
+          "relationship": {
+            "id": "adapter-to-inference",
+            "from": "adapter",
+            "to": "inference",
+            "label": "load LoRA adapter",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "bends": 3,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "evaluator-to-inference",
+            "from": "evaluator",
+            "to": "inference",
+            "label": "run base / adapter cases",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "bends": 4,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "inference-to-evaluator",
+            "from": "inference",
+            "to": "evaluator",
+            "label": "predictions",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "bends": 4,
+          "stretch": 1.168
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "inference → response-rules and evaluator → inference cross next to inference: move node response-rules or evaluator so the two reach inference from different sides (for example one level with it, one directly above or below it).",
+      "response-rules → inference and evaluator → inference cross next to inference: move node response-rules or evaluator so the two reach inference from different sides (for example one level with it, one directly above or below it).",
+      "dataset-hub → download crosses evaluator → inference: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "splits → trainer crosses adapter → inference: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "evaluator → inference and inference → evaluator cross next to evaluator: move node inference or inference so the two reach evaluator from different sides (for example one level with it, one directly above or below it).",
+      "inference → streamlit needs 4 bends: move node inference or streamlit so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "preprocess → splits needs 3 bends: move node preprocess or splits so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "adapter → inference needs 3 bends: move node adapter or inference so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

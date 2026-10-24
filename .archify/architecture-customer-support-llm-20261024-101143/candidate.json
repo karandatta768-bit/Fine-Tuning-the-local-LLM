@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Local Customer Support LLM",
+    "locale": "en",
+    "output": ".archify/architecture-customer-support-llm-20261024-101143/customer-support-architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "customer-flow",
+        "label": "Customer request",
+        "focus": [
+          "customer",
+          "streamlit",
+          "inference",
+          "response-rules"
+        ]
+      },
+      {
+        "id": "training-flow",
+        "label": "Data and training",
+        "focus": [
+          "dataset-hub",
+          "download",
+          "raw-csv",
+          "preprocess",
+          "splits",
+          "trainer",
+          "adapter"
+        ]
+      },
+      {
+        "id": "evaluation-flow",
+        "label": "Evaluation",
+        "focus": [
+          "splits",
+          "evaluator",
+          "inference",
+          "adapter",
+          "results"
+        ]
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "customer",
+      "type": "external",
+      "label": "Customer",
+      "sublabel": "customer message",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        110,
+        62
+      ]
+    },
+    {
+      "id": "streamlit",
+      "type": "frontend",
+      "label": "Streamlit UI",
+      "sublabel": "app.py · Streamlit",
+      "pos": [
+        250,
+        90
+      ],
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "inference",
+      "type": "backend",
+      "label": "Inference",
+      "sublabel": "PyTorch · Transformers · PEFT",
+      "pos": [
+        540,
+        90
+      ],
+      "size": [
+        170,
+        82
+      ]
+    },
+    {
+      "id": "model-hub",
+      "type": "cloud",
+      "label": "Hugging Face model",
+      "sublabel": "Qwen2.5-0.5B-Instruct",
+      "pos": [
+        850,
+        90
+      ],
+      "size": [
+        155,
+        70
+      ]
+    },
+    {
+      "id": "response-rules",
+      "type": "security",
+      "label": "Response safeguards",
+      "sublabel": "JSON · allowed labels · safe reply",
+      "pos": [
+        250,
+        250
+      ],
+      "size": [
+        180,
+        78
+      ]
+    },
+    {
+      "id": "dataset-hub",
+      "type": "cloud",
+      "label": "Hugging Face dataset",
+      "sublabel": "Bitext support dataset",
+      "pos": [
+        40,
+        430
+      ],
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "download",
+      "type": "backend",
+      "label": "Download dataset",
+      "sublabel": "pandas · HF Hub client",
+      "pos": [
+        260,
+        430
+      ],
+      "size": [
+        145,
+        78
+      ]
+    },
+    {
+      "id": "raw-csv",
+      "type": "database",
+      "label": "Raw CSV",
+      "sublabel": "data/customer_support_raw.csv",
+      "pos": [
+        470,
+        430
+      ],
+      "size": [
+        135,
+        70
+      ]
+    },
+    {
+      "id": "preprocess",
+      "type": "backend",
+      "label": "Prepare and split",
+      "sublabel": "clean · dedupe · stratify · JSONL",
+      "pos": [
+        300,
+        580
+      ],
+      "size": [
+        150,
+        82
+      ]
+    },
+    {
+      "id": "splits",
+      "type": "database",
+      "label": "Processed splits",
+      "sublabel": "train · validation · test JSONL",
+      "pos": [
+        540,
+        580
+      ],
+      "size": [
+        150,
+        82
+      ]
+    },
+    {
+      "id": "trainer",
+      "type": "backend",
+      "label": "LoRA trainer",
+      "sublabel": "PyTorch · datasets · TRL · PEFT",
+      "pos": [
+        850,
+        580
+      ],
+      "size": [
+        155,
+        82
+      ]
+    },
+    {
+      "id": "adapter",
+      "type": "database",
+      "label": "LoRA adapter",
+      "sublabel": "outputs/customer-support-lora",
+      "pos": [
+        850,
+        730
+      ],
+      "size": [
+        155,
+        72
+      ]
+    },
+    {
+      "id": "evaluator",
+      "type": "backend",
+      "label": "Evaluator",
+      "sublabel": "base + adapter · intent metrics",
+      "pos": [
+        40,
+        760
+      ],
+      "size": [
+        160,
+        82
+      ]
+    },
+    {
+      "id": "results",
+      "type": "database",
+      "label": "Evaluation results",
+      "sublabel": "results/*.json",
+      "pos": [
+        40,
+        900
+      ],
+      "size": [
+        155,
+        72
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "message-to-ui",
+      "from": "customer",
+      "to": "streamlit",
+      "label": "message",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ui-to-customer",
+      "from": "streamlit",
+      "to": "customer",
+      "label": "show reply"
+    },
+    {
+      "id": "ui-to-inference",
+      "from": "streamlit",
+      "to": "inference",
+      "label": "answer_customer"
+    },
+    {
+      "id": "inference-to-ui",
+      "from": "inference",
+      "to": "streamlit",
+      "label": "JSON result"
+    },
+    {
+      "id": "model-to-inference",
+      "from": "model-hub",
+      "to": "inference",
+      "label": "model fallback"
+    },
+    {
+      "id": "inference-to-rules",
+      "from": "inference",
+      "to": "response-rules",
+      "label": "validate JSON",
+      "variant": "security"
+    },
+    {
+      "id": "rules-to-inference",
+      "from": "response-rules",
+      "to": "inference",
+      "label": "validated result or fallback",
+      "variant": "security"
+    },
+    {
+      "id": "hub-to-download",
+      "from": "dataset-hub",
+      "to": "download",
+      "label": "fetch CSV"
+    },
+    {
+      "id": "download-to-raw",
+      "from": "download",
+      "to": "raw-csv",
+      "label": "write CSV"
+    },
+    {
+      "id": "raw-to-preprocess",
+      "from": "raw-csv",
+      "to": "preprocess",
+      "label": "read CSV"
+    },
+    {
+      "id": "preprocess-to-splits",
+      "from": "preprocess",
+      "to": "splits",
+      "label": "write splits"
+    },
+    {
+      "id": "splits-to-trainer",
+      "from": "splits",
+      "to": "trainer",
+      "label": "train + validation"
+    },
+    {
+      "id": "model-to-trainer",
+      "from": "model-hub",
+      "to": "trainer",
+      "label": "base model"
+    },
+    {
+      "id": "trainer-to-adapter",
+      "from": "trainer",
+      "to": "adapter",
+      "label": "save adapter"
+    },
+    {
+      "id": "adapter-to-inference",
+      "from": "adapter",
+      "to": "inference",
+      "label": "load LoRA adapter"
+    },
+    {
+      "id": "splits-to-inference",
+      "from": "splits",
+      "to": "inference",
+      "label": "allowed labels"
+    },
+    {
+      "id": "splits-to-evaluator",
+      "from": "splits",
+      "to": "evaluator",
+      "label": "held-out test"
+    },
+    {
+      "id": "evaluator-to-inference",
+      "from": "evaluator",
+      "to": "inference",
+      "label": "run base / adapter cases"
+    },
+    {
+      "id": "inference-to-evaluator",
+      "from": "inference",
+      "to": "evaluator",
+      "label": "predictions"
+    },
+    {
+      "id": "evaluator-to-results",
+      "from": "evaluator",
+      "to": "results",
+      "label": "write metrics"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Runtime and dependencies",
+      "items": [
+        "app.py calls src.inference.answer_customer; adapter inference is enabled by default.",
+        "The inference path uses PyTorch, Transformers, PEFT, and Hugging Face Hub; training adds datasets, TRL, and Accelerate.",
+        "Evaluation is a separate command-line flow, not a Streamlit action."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Scope and evidence",
+      "items": [
+        "The app drafts suggestions only; no live order, payment, or email integration is present.",
+        "test.py checks preprocessing and response helpers; it does not run an end-to-end UI or model test.",
+        "This project folder has no Git metadata, so source references identify the inspected workspace files rather than a pinned commit."
+      ]
+    },
+    {
+      "dot": "slate",
+      "items": [
+        "Customer UI: app.py:1-21; inference and model loading: src/inference.py:28-101; response safeguards: src/response_schema.py:14-48.",
+        "Dataset download and raw CSV: src/download_dataset.py:6-22; cleaning and train/validation/test JSONL writes: src/prepare_data.py:6-64.",
+        "LoRA training and adapter output: src/train.py:24-55; adapter loading in inference: src/inference.py:52-71.",
+        "Held-out evaluation and result files: src/evaluate.py:13-78; helper checks: test.py:13-63.",
+        "References point to the inspected workspace files; the folder has no Git revision to pin."
+      ],
+      "title": "Source map"
+    }
+  ]
+}
